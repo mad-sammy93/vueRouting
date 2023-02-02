@@ -5,19 +5,27 @@ import App from './App.vue';
 import TeamsList from './components/teams/TeamsList.vue';
 import UsersList from './components/users/UsersList.vue';
 import TeamMembers from './components/teams/TeamMembers.vue'
+import NotFound from './components/nav/NotFound.vue'
 
 
 const router = createRouter({
     history: createWebHistory(),
     routes:[
 
-        // { path: '/',component:TeamsList },
-        { path: '/teams', component:TeamsList },//our-domain.com/teams => TeamsList
+        { path: '/',redirect: '/teams' },
+        { 
+            name:'teams',
+            path: '/teams', 
+            component:TeamsList,  
+            children: [
+                { name: 'team-members', path: ':teamId', component:TeamMembers, props:true },///teams/:teamId'
+            ]
+        },//alias:'/'//our-domain.com/teams => TeamsList
         { path: '/users', component:UsersList },
         // { path: '/teams/new'},
-        { path: '/teams/:teamId', component:TeamMembers},
-        
-    ]
+        { path: '/:noFound(.*)', component:NotFound,}//redirect: '/teams'
+    ],
+    linkActiveClass:'active'
 }); 
 
 const app = createApp(App)
@@ -25,3 +33,4 @@ const app = createApp(App)
 app.use(router);
 
 app.mount('#app');
+[]
