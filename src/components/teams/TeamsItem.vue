@@ -9,14 +9,18 @@
 
 <script>
 export default {
-  props: ['id','name', 'memberCount'],
+  props: ['id', 'name', 'memberCount'],
   computed: {
-    teamMembersLink(){
-      // return '/teams/'+ this.id;
+    teamMembersLink() {
+      // return '/teams/'+ this.id; // + '?sort=asc';
       // return { path:'/teams' + this.id}
-      return { name: 'team-members', params: { teamId: this.id }};
-    }
-  }
+      return {
+        name: 'team-members',
+        params: { teamId: this.id },
+        query: { sort: 'asc' },
+      };
+    },
+  },
 };
 </script>
 

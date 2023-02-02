@@ -52,13 +52,14 @@ export default {
   created() {
     // this.loadTeamMembers(this.$route);
     this.loadTeamMembers(this.teamId); //with props
+    console.log(this.$route.query);
   },
   watch: {
     // $route(newRoute) {
     //   this.loadTeamMembers(newRoute);
     // }
     //With props
-    teamID(newId) {
+    teamId(newId) {
       this.loadTeamMembers(newId);
     }
   }
