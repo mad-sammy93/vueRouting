@@ -54,6 +54,12 @@ export default {
     this.loadTeamMembers(this.teamId); //with props
     console.log(this.$route.query);
   },
+  beforeRouteUpdate(to,from,next){
+    console.log('TeamMembers CMP beforeRoute Update');
+    console.log(to,from);
+    //  this.loadTeamMembers(to.params.teamId)  //Alternative to created() Load members
+    next();
+  },
   watch: {
     // $route(newRoute) {
     //   this.loadTeamMembers(newRoute);

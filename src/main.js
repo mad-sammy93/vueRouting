@@ -32,6 +32,11 @@ const router = createRouter({
         default: UsersList,
         footer: UsersFooter,
       },
+      beforeEnter(to,from,next){
+        console.log('users before enter');
+        console.log((to,from));
+        next();
+      }
     },
     // { path: '/teams/new'},
     { path: '/:noFound(.*)', component: NotFound }, //redirect: '/teams'
@@ -62,4 +67,4 @@ const app = createApp(App);
 app.use(router);
 
 app.mount('#app');
-[];
+
